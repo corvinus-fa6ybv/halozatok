@@ -1,0 +1,20 @@
+﻿div {
+    /*font-size:60px;
+    letter-spacing:20px;*/
+}
+
+#pascal {
+    display: block;
+    flex-direction: row;
+}
+
+.sor {
+    display: block;
+    flex-direction: row;
+}
+
+.elem {
+    width: 30px;
+    /*height:30px;*/
+    line-height: 50px;
+}
