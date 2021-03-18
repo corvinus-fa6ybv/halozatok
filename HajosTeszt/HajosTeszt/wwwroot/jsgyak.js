@@ -6,7 +6,7 @@ for (var i = 0; i < 10; i++) {
     div.appendChild(szam);
     document.body.insertBefore(div, div1);
     document.getElementById("div1").classList.add("szin");
-    szam.style.color = `rgb(${255 / 10 * i}, 0, ${255 / 10 * i})`;
+   // szam.style.color = `rgb(${255 / 10 * i}, 0, ${255 / 10 * i})`;
 }
 
 window.onload = function () {
