@@ -1,20 +1,21 @@
-﻿div {
-    /*font-size:60px;
-    letter-spacing:20px;*/
+﻿
+#pascal {
+   
 }
 
-#pascal {
-    display: block;
-    flex-direction: row;
+.elsofeladat {
+    display: inline-block;
+    background-color:white;
+    font-size:100px;
 }
 
 .sor {
-    display: block;
+    text-align:center;
+    display: flex;
     flex-direction: row;
+    justify-content: center;
 }
-
 .elem {
     width: 30px;
-    /*height:30px;*/
-    line-height: 50px;
+    height: 30px;
 }

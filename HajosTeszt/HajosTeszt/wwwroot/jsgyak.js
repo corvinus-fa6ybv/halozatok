@@ -1,12 +1,12 @@
-﻿var div = document.createElement("div");
-const most = document.getElementById("div1");
+﻿
+let elso = document.getElementById("div1");
 
 for (var i = 0; i < 10; i++) {
-    let szam = document.createTextNode(i);
-    div.appendChild(szam);
-    document.body.insertBefore(div, div1);
-    document.getElementById("div1").classList.add("szin");
-   // szam.style.color = `rgb(${255 / 10 * i}, 0, ${255 / 10 * i})`;
+    let szam = document.createElement("div");
+    szam.innerText = i;
+    elso.appendChild(szam)
+    szam.classList.add("elsofeladat");
+    szam.style.background = `rgb(${200 / (i / 2)}, 0, ${249 / (i / 2)})`;
 }
 
 window.onload = function () {
@@ -27,11 +27,11 @@ window.onload = function () {
         sor.classList.add("sor");
         hova.appendChild(sor);
 
-        for (var oszlop = 0; oszlop <= s; oszlop++) {
-            let szám = document.createElement("div");
-            szám.classList.add("elem");
-            szám.innerText = faktoriális(s, oszlop); 
-            sor.appendChild(szám);
+        for (var o = 0; o <= s; o++) {
+            let oszlop = document.createElement("div");
+            oszlop.classList.add("elem");
+            oszlop.innerText = `${faktoriális(s)/(faktoriális(o)*faktoriális(s-o))}`
+            sor.appendChild(oszlop);
            
         }
     }
