@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace HajosTeszt
 {
-    [Route("api/[controller]")]
+   // [Route("api/[controller]")]
     [ApiController]
     public class TesztController : ControllerBase
     {

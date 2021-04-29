@@ -1,11 +1,13 @@
 ﻿
 html, body {
     height:100%;
+    background-color:cornflowerblue;
 }
 
 div {
     margin: 10px;
    /* border: 1px solid green;*/
+   font-size:20px;
 }
 
 #külső {
@@ -15,6 +17,7 @@ div {
 }
 
 #kérdés_szöveg {
+    font-size:20px;
 }
 
 #középső {
