@@ -1,0 +1,82 @@
+﻿html, body {
+	height: 100%;
+	background-color: darksalmon;
+}
+div {
+	margin: 10px;
+	/* border: 1px solid green;*/
+	font-size: 20px;
+}
+
+#középső {
+	display: flex;
+
+	flex-direction: row;
+	flex-grow: 1;
+}
+
+.kerdes:hover {
+	background-color:white;
+	
+	border-radius:30px;
+}
+
+.kerdes {
+	border: 5px solid white;
+	padding: 30px;
+	border-radius: 30px;
+	font-family: 'Roboto', sans-serif;
+}
+
+#külső {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	font-family: 'Roboto', sans-serif;
+}
+
+#vezérlő {
+	font-family: 'Roboto', sans-serif;
+}
+
+.kattintható {
+	cursor: pointer;
+	text-align: center;
+
+}
+
+.gomb {
+	padding: 20px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	cursor: pointer;
+	font-family: DotGothic16;
+}
+
+.gomb:hover {
+	background-color:blueviolet;
+}
+
+
+
+#vezérlő {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+#kép {
+	overflow: hidden;
+	flex-shrink: 0;
+	flex-shrink: 0;
+}
+
+.jo {
+	background-color: forestgreen;
+}
+
+.rossz {
+	background-color: orangered;
+}
+				

@@ -1,8 +1,4 @@
-﻿window.onload = function () {
-    init();
-
-    //  letoltes()
-}
+﻿
 var kerdesek;
 let kerdesSzam = 1;
 var hotList = [];           //Az éppen gyakoroltatott kérdések listája 
@@ -12,7 +8,8 @@ var numberOfQuestions;      //Kérdések száma a teljes adatbázisban
 var nextQuestion = 1;      //A következő kérdés száma a teljes listában
 var timeoutHandler;
 
-function init() {
+//rendben van
+document.addEventListener("DOMContentLoaded" , ()  => {
     for (var i = 0; i < questionsInHotList; i++) {
         let q = {
             question: {},
@@ -25,14 +22,44 @@ function init() {
         kérdésBetöltés(nextQuestion, i);
         nextQuestion++;
     }
-}
 
+    fetch("qestions/count")
+        .then(result => result.text())
+        .then(n => { numberOfQuestions = parseInt(n) })
+
+    document.getElementById("előre_gomb").addEventListener("click", Előre)
+    document.getElementById("vissza_gomb").addEventListener("click", Vissza)
+
+    if (localStorage.getItem("hotList")) {
+        hotList = JSON.parse(localStorage.getItem("hotList"));
+    }
+
+    if (localStorage.getItem("displayedQuestion")) {
+        displayedQuestion = parseInt(localStorage.getItem("displayedQuestion"))
+    }
+
+    if (localStorage.getItem("nextQuestion")) {
+       nextQuestion = parseInt(localStorage.getItem("nextQuestion"))
+    }
+    if (hotList.lenght === 0) {
+        for (let i = 0; i < questionsInHotList; i++) {
+            kérdésBetöltés(nextQuestion, i);
+            nextQuestion++;
+        }
+    }
+    else {
+        kérdésMegjelenítés();
+    }
+});
+
+//rendben van
 function kérdésBetöltés(questionNumber, destination) {
     fetch(`/questions/${questionNumber}`)
         .then(
             result => {
                 if (!result.ok) {
                     console.error(`Hibás letöltés: ${result.status}`)
+                    return null;
                 }
                 else {
                     return result.json()
@@ -69,100 +96,121 @@ function kérdésMegjelenítés() {
         document.getElementById("kép1").style.display = "none";
     }
 
-    timeoutHandler = setTimeout(Előre, 3000);
+    for (var i = 1; i <= 3; i++) document.getElementById("válasz" + i).classList.remove("jo", "rossz");
+    document.getElementById("válaszok").style.pointerEvents = "auto";
+
+   // timeoutHandler = setTimeout(Előre, 3000);
     
-    document.getElementById("válasz1").classList.remove("jó", "rossz");
-    document.getElementById("válasz2").classList.remove("jó", "rossz");
-    document.getElementById("válasz3").classList.remove("jó", "rossz");
+    //document.getElementById("válasz1").classList.remove("jo", "rossz");
+    //document.getElementById("válasz2").classList.remove("jo", "rossz");
+    //document.getElementById("válasz3").classList.remove("jo", "rossz");
 
 
 
-    document.getElementById("válasz1").onclick = function joValasz1() {
-        let valasz = document.getElementById("válasz1");
-        let jo = kérdés.correctAnswer;
-        document.getElementById("válasz1").style.pointerEvents = "none"
-        if (1 == jo) {
-            valasz.style.background = 'green';
-            hotList[displayedQuestion].goodAnswers++;
-            if (hotList[displayedQuestion].goodAnswers == 3) {
-                kérdésBetöltés(nextQuestion, displayedQuestion);
-                nextQuestion
-            }
-        }
-        else {
-            valasz.style.background = 'red';
-            hotList[displayedQuestion].goodAnswers = 0;
-        }
-    }
-    document.getElementById("válasz2").onclick = function joValasz2() {
-        let valasz = document.getElementById("válasz2");
-        let jo = kérdés.correctAnswer;
-        document.getElementById("válasz2").style.pointerEvents = "none"
+    //document.getElementById("válasz1").onclick = function joValasz1() {
+    //    let valasz = document.getElementById("válasz1");
+    //    let jo = kérdés.correctAnswer;
+    //    document.getElementById("válasz1").style.pointerEvents = "none"
+    //    if (1 == jo) {
+    //        //valasz.style.background = 'green';
+    //        hotList[displayedQuestion].goodAnswers++;
+    //        if (hotList[displayedQuestion].goodAnswers == 3) {
+    //            kérdésBetöltés(nextQuestion, displayedQuestion);
+    //            nextQuestion
+    //        }
+    //    }
+    //    else {
+    //        //valasz.style.background = 'red';
+    //        hotList[displayedQuestion].goodAnswers = 0;
+    //    }
+    //}
+    //document.getElementById("válasz2").onclick = function joValasz2() {
+    //    let valasz = document.getElementById("válasz2");
+    //    let jo = kérdés.correctAnswer;
+    //    document.getElementById("válasz2").style.pointerEvents = "none"
 
-        if (2 == jo) {
-            valasz.style.background = 'green';
-            hotList[displayedQuestion].goodAnswers++;
-            if (hotList[displayedQuestion].goodAnswers == 3) {
-                kérdésBetöltés(nextQuestion, displayedQuestion);
-                nextQuestion
-            }
-        }
-        else {
-            valasz.style.background = 'red';
-            hotList[displayedQuestion].goodAnswers = 0;
-        }
-    }
-    document.getElementById("válasz3").onclick = function joValasz3() {
-        let valasz = document.getElementById("válasz3");
-        let jo = kérdés.correctAnswer;
-        document.getElementById("válasz3").style.pointerEvents = "none"
+    //    if (2 == jo) {
+    //        //valasz.style.background = 'green';
+    //        hotList[displayedQuestion].goodAnswers++;
+    //        if (hotList[displayedQuestion].goodAnswers == 3) {
+    //            kérdésBetöltés(nextQuestion, displayedQuestion);
+    //            nextQuestion
+    //        }
+    //    }
+    //    else {
+    //       // valasz.style.background = 'red';
+    //        hotList[displayedQuestion].goodAnswers = 0;
+    //    }
+    //}
+    //document.getElementById("válasz3").onclick = function joValasz3() {
+    //    let valasz = document.getElementById("válasz3");
+    //    let jo = kérdés.correctAnswer;
+    //    document.getElementById("válasz3").style.pointerEvents = "none"
 
 
-        if (3 == jo) {
-            valasz.style.background = 'green';
-            hotList[displayedQuestion].goodAnswers++;
-            if (hotList[displayedQuestion].goodAnswers == 3) {
-                kérdésBetöltés(nextQuestion, displayedQuestion);
-                nextQuestion
-            }
-        }
-        else {
-            valasz.style.background = 'red';
-            hotList[displayedQuestion].goodAnswers = 0;
-        }
-    }
+    //    if (3 == jo) {
+    //       //valasz.style.background = 'green';
+    //        hotList[displayedQuestion].goodAnswers++;
+    //        if (hotList[displayedQuestion].goodAnswers == 3) {
+    //            kérdésBetöltés(nextQuestion, displayedQuestion);
+    //            nextQuestion
+    //        }
+    //    }
+    //    else {
+    //        //valasz.style.background = 'red';
+    //        hotList[displayedQuestion].goodAnswers = 0;
+    //    }
+    //}
 
 }
 
-
+//rendben van
 function választás(n) {
-    if (n != jóVálasz) {
-        document.getElementById(`válasz${n}`).classList.add("rossz");
-        document.getElementById(`válasz${jóVálasz}`).classList.add("jó");
+    let kérdés = hotList[displayedQuestion].question;
+    if (n === kérdés.correctAnswer) {
+        document.getElementById("válasz" + n).classList.add("jo");
+        hotList[displayedQuestion].goodAnswers++;
+        if (hotList[displayedQuestion].goodAnswers === 3) {
+            kérdésBetöltés(nextQuestion, displayedQuestion);
+            nextQuestion++;
+        }
     }
     else {
-        document.getElementById(`válasz${jóVálasz}`).classList.add("jó");
+        document.getElementById("válasz" + n).classList.add("rossz");
+        document.getElementById("válasz" + kérdés.correctAnswer).classList.add("jo");
+        hotList[displayedQuestion].goodAnswers = 0;
     }
+
+    document.getElementById("válaszok").style.pointerEvents = "none";
+    timeHandler = setTimeout(Előre, 3000);
+
+    localStorage.setItem("hotList", JSON.stringify(hotList));
+    localStorage.setItem("displayedQuestion", displayedQuestion);
+    localStorage.setItem("nextQuestion", nextQuestion);
+
 }
 
-function Előre(lepes) {
+//rendben van
+function Előre() {
     clearTimeout(timeoutHandler)
-    if (displayedQuestion == questionsInHotList) displayedQuestion = 0;
-    kérdésMegjelenítés()
     displayedQuestion++;
-    document.getElementById("válasz1").style.background = "lightpink";
-    document.getElementById("válasz2").style.background = "lightpink";
-    document.getElementById("válasz3").style.background = "lightpink";
-}
-
-function Vissza(lepes) {
-    displayedQuestion++;
-    clearTimeout(timeoutHandler)
     if (displayedQuestion == questionsInHotList) displayedQuestion = 0;
     kérdésMegjelenítés();
-    document.getElementById("válasz1").style.background = "lightpink";
-    document.getElementById("válasz2").style.background = "lightpink";
-    document.getElementById("válasz3").style.background = "lightpink";
+    
+    //document.getElementById("válasz1").style.background = "lightpink";
+  //  document.getElementById("válasz2").style.background = "lightpink";
+  //  document.getElementById("válasz3").style.background = "lightpink";
+}
+
+//rendben van
+function Vissza() {
+    displayedQuestion--;
+   // clearTimeout(timeoutHandler)
+    if (displayedQuestion < 0) displayedQuestion = questionInHotList - 1 ;
+    kérdésMegjelenítés();
+   // document.getElementById("válasz1").style.background = "lightpink";
+    //document.getElementById("válasz2").style.background = "lightpink";
+    //document.getElementById("válasz3").style.background = "lightpink";
 }
 
 

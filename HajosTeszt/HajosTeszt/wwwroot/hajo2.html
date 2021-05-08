@@ -2,10 +2,12 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <link href="hajo.css" rel="stylesheet" type="text/css" />
+    <link href="hajo2.css" rel="stylesheet" type="text/css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
     <title>Hajós teszt</title>
 </head>
 <body>
@@ -16,17 +18,17 @@
 
         <div id="középső">
             <div id="válaszok">
-                <div id="válasz1" class="kerdes" onclick="választás(1)"></div>
-                <div id="válasz2" class="kerdes" onclick="választás(2)"></div>
-                <div id="válasz3" class="kerdes" onclick="választás(3)"></div>
+                <div id="válasz1" class="kerdes kattintható" onclick="választás(1)"></div>
+                <div id="válasz2" class="kerdes kattintható" onclick="választás(2)"></div>
+                <div id="válasz3" class="kerdes kattintható" onclick="választás(3)"></div>
             </div>
             <div id="kép">
                 <img id="kép1" />
             </div>
         </div>
         <div id="vezérlő">
-            <div id="vissza_gomb" class="gomb kattintható" onclick="Vissza()">Vissza</div>
-            <div id="előre_gomb" class="gomb kattintható" onclick="Előre()">Előre</div>
+            <div id="vissza_gomb" class="gomb" onclick="Vissza()">Vissza</div>
+            <div id="előre_gomb" class="gomb" onclick="Előre()">Előre</div>
         </div>
     </div>
     <script src="tizedik.js"></script>

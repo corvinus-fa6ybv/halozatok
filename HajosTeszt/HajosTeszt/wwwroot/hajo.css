@@ -49,7 +49,7 @@ flex-shrink:1;
 }
 
 .kerdes {
-    background-color:lightpink;
+    //background-color:lightpink;
 }
 
 .kattintható {
@@ -58,10 +58,10 @@ flex-shrink:1;
     font-family: DotGothic16;
 }
 
-.kattintható:hover {
-    background-color:palevioletred;
-    color:darkgray;
-}
+/*.kattintható:hover {*/
+    /*background-color:palevioletred;
+    color:darkgray;*/
+/*}*/
 
 .jo {
     background-color:forestgreen;
