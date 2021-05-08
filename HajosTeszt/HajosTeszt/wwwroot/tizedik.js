@@ -99,69 +99,6 @@ function kérdésMegjelenítés() {
     for (var i = 1; i <= 3; i++) document.getElementById("válasz" + i).classList.remove("jo", "rossz");
     document.getElementById("válaszok").style.pointerEvents = "auto";
 
-   // timeoutHandler = setTimeout(Előre, 3000);
-    
-    //document.getElementById("válasz1").classList.remove("jo", "rossz");
-    //document.getElementById("válasz2").classList.remove("jo", "rossz");
-    //document.getElementById("válasz3").classList.remove("jo", "rossz");
-
-
-
-    //document.getElementById("válasz1").onclick = function joValasz1() {
-    //    let valasz = document.getElementById("válasz1");
-    //    let jo = kérdés.correctAnswer;
-    //    document.getElementById("válasz1").style.pointerEvents = "none"
-    //    if (1 == jo) {
-    //        //valasz.style.background = 'green';
-    //        hotList[displayedQuestion].goodAnswers++;
-    //        if (hotList[displayedQuestion].goodAnswers == 3) {
-    //            kérdésBetöltés(nextQuestion, displayedQuestion);
-    //            nextQuestion
-    //        }
-    //    }
-    //    else {
-    //        //valasz.style.background = 'red';
-    //        hotList[displayedQuestion].goodAnswers = 0;
-    //    }
-    //}
-    //document.getElementById("válasz2").onclick = function joValasz2() {
-    //    let valasz = document.getElementById("válasz2");
-    //    let jo = kérdés.correctAnswer;
-    //    document.getElementById("válasz2").style.pointerEvents = "none"
-
-    //    if (2 == jo) {
-    //        //valasz.style.background = 'green';
-    //        hotList[displayedQuestion].goodAnswers++;
-    //        if (hotList[displayedQuestion].goodAnswers == 3) {
-    //            kérdésBetöltés(nextQuestion, displayedQuestion);
-    //            nextQuestion
-    //        }
-    //    }
-    //    else {
-    //       // valasz.style.background = 'red';
-    //        hotList[displayedQuestion].goodAnswers = 0;
-    //    }
-    //}
-    //document.getElementById("válasz3").onclick = function joValasz3() {
-    //    let valasz = document.getElementById("válasz3");
-    //    let jo = kérdés.correctAnswer;
-    //    document.getElementById("válasz3").style.pointerEvents = "none"
-
-
-    //    if (3 == jo) {
-    //       //valasz.style.background = 'green';
-    //        hotList[displayedQuestion].goodAnswers++;
-    //        if (hotList[displayedQuestion].goodAnswers == 3) {
-    //            kérdésBetöltés(nextQuestion, displayedQuestion);
-    //            nextQuestion
-    //        }
-    //    }
-    //    else {
-    //        //valasz.style.background = 'red';
-    //        hotList[displayedQuestion].goodAnswers = 0;
-    //    }
-    //}
-
 }
 
 //rendben van
@@ -187,7 +124,6 @@ function választás(n) {
     localStorage.setItem("hotList", JSON.stringify(hotList));
     localStorage.setItem("displayedQuestion", displayedQuestion);
     localStorage.setItem("nextQuestion", nextQuestion);
-
 }
 
 //rendben van
