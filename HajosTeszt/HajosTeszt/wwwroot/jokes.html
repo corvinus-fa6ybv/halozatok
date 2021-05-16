@@ -13,14 +13,13 @@
         <button id="addButton">Új vicc felvétele</button>
     </form>
     <script>
-
+        
         document.getElementById("addButton").addEventListener("click", () => {
 
-            //Ezt az objektumot fogjuk átküldeni
             let data = {
                 jokeText: document.getElementById("jokeText").value
             }
-
+            
 
             fetch("api/jokes",
                 {
@@ -34,14 +33,18 @@
 
         });
 
+
         fetch("api/jokes",
             {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(data)
+                body: JSON.stringify(),
+                
+               
             }).then(x => {
+                
                 if (x.ok) {
                     alert("Siker");
 
@@ -49,7 +52,13 @@
                 else {
                     alert("Kudarc");
                 }
-            });
+                 
+            }).then(data => vicc(data));
+
+        function vicc(v) {
+            document.getElementById("jokeList").innerText = jokeText
+        }
+        
     </script>
 </body>
 </html>
