@@ -1,0 +1,147 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Ez az én beadandóm!</title>
+    <link href="beadando.css" rel="stylesheet" type="text/css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Pattaya&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <form>
+        <div class="cim">Madarak érdekes gyűjteménye</div>
+        <div id="main">
+            <div id="aside">
+                <div id="madarakList" class="lista">
+                </div>
+            </div>
+
+            <div id="article">
+                <div>
+                    <p>Írja be a madár nevét, amit fel szeretne venni a listára!</p>
+                    <input class="beiro" id="madarNeve" type="text" />
+                </div>
+
+                <div class="gomb" id="hozzaadas">Vegyük fel ezt a madarat!</div>
+                <p>Jelölje be azt a madarat, amit törölni szeretne a listáról!</p>
+                <div class="gomb" id="torles">Töröljük ezt a madarat!</div>
+            </div>
+        </div>
+    </form>
+
+    <script>
+        var hotList = [];
+        var madarakLista = 100;
+        var madarakszama;
+        var ujmadar = 1;
+
+        document.addEventListener("DOMContentLoaded", () => {
+            for (var i = 0; i < madarakLista; i++) {
+                let q = {
+                    madarNev: {}
+                }
+                hotList[i] = q;
+            }
+
+            for (var i = 0; i < madarakLista; i++) {
+                listaMegjelenites(ujmadar, i);
+                ujmadar++;
+            }
+
+            fetch("api/madarak")
+                .then(result => result.text())
+                .then(n => { madarakszama = parseInt(n) })
+        });
+
+        function listaMegjelenites(madarszama, destination) {
+            fetch(`/api/madarak/${madarszama}`)
+                .then(
+                    result => {
+                        if (!result.ok) {
+                            console.error(`Hibás letöltés: ${result.status}`)
+                            return null;
+                        }
+                        else {
+                            return result.json()
+                        }
+                    }
+                )
+                .then(
+                    q => {
+                        hotList[destination].madar = q;
+                        let elso = document.getElementById("madarakList");
+                        let uj = document.createElement("div");
+                        let kocka = document.createElement("input");
+                        elso.appendChild(uj);
+                        elso.appendChild(kocka);
+                        uj.classList.add("lista");
+                        hotList[madarszama].madar = q;
+                        uj.innerText = q.madarNev
+                        kocka.type = "checkbox";
+                        kocka.value = "value";
+                        kocka.id = "id";
+                    }
+                );
+        }
+
+        //hozzáadás
+        document.getElementById("hozzaadas").addEventListener("click", () => {
+            var ures = document.getElementById("madarNeve").value;
+            if (ures == "") {
+                alert("Írjon be valamilyen madár nevét!");
+            } else {
+
+                let data = {
+                    madarNev: document.getElementById("madarNeve").value
+                }
+
+                fetch("api/madarak",
+                    {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(data)
+
+                    }).then(x => {
+                        if (x.ok) {
+                            alert("Sikerült!");
+                            location.reload();
+                        }
+                        else {
+                            alert("Nem sikerült!");
+                        }
+                    });
+
+            }
+        });
+
+        //törlés
+        document.getElementById("torles").addEventListener("click", () => {
+
+            let data = {
+                madarNev: document.getElementById("id").madarSK
+            }
+            fetch("api/madarak",
+                {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+
+                }).then(x => {
+                    if (x.ok) {
+                        alert("Sikerült!");
+                        location.reload();
+                    }
+                    else {
+                        alert("Nem sikerült!");
+                    }
+                });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+﻿* {
+    box-sizing: border-box;
+}
+
+html {
+    background-color: #F7ECDF;
+    padding-top: 40px;
+}
+
+.cim {
+    font-family: 'Pattaya', sans-serif;
+    color: #688F4E;
+    font-size: 50px;
+    text-align: center;
+}
+
+p {
+    font-family: 'Pattaya', sans-serif;
+    color:indianred;
+    font-size: 20px;
+    text-align: center;
+    margin-top:70px;
+}
+
+.lista {
+    font-family: 'Amatic SC', cursive;
+    color: #356d65;
+    font-size: 25px;
+    padding-left: 100px;
+    margin-bottom: -63px;
+    padding-top: 20px;
+    padding-bottom: 30px;
+}
+
+.madarakList {
+    padding-left: 355px;
+}
+
+#id {
+    display: initial !important;
+    margin-top: -20PX;
+    margin-left: 50px;
+}
+
+#article {
+    display: block;
+    text-align:center;
+    align-content:center;
+} 
+
+.beiro {
+    font-family: 'Pattaya', sans-serif;
+    color: #777d71;
+    font-size: 20px;
+    margin-bottom: 10px;
+    width: 350px;
+}
+
+.gomb {
+    cursor: pointer;
+    font-family: 'Pattaya', sans-serif;
+    color: #777d71;
+    font-size: 30px;
+    text-align: center;
+    transition: transform .2s;
+    align-content:center;
+}
+    .gomb:hover {
+        transform: scale(1.3);
+        width:auto;
+    }
+
+@media screen and (min-width: 800px) {
+    body {
+        display: flex;
+        flex-direction: column;
+        max-width: 1500px;
+        margin: auto;
+    }
+
+    #article {
+        flex: 1 1 70%;
+    }
+
+    #main {
+        display: flex;
+    }
+
+    #aside {
+        flex: 1 1 30%;
+    }
+}
